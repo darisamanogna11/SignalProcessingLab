@@ -1,0 +1,10 @@
+w0=pi/4;
+b0=1;
+b_fir= [b0, -2 * b0 * cos(w0), b0];
+a_fir= 1;
+b0 = 1;
+b_iir = b0 * ((1 - exp(1i * w0)) * (1 - exp(-1i * w0)));
+r0 = 0.5; 
+a_iir = [1, -r0 * (exp(1i * w0) + exp(-1i * w0)), r0^2];
+fvtool(b_fir, a_fir, b_iir, a_iir);
+legend('FIR Notch Filter', 'IIR Notch Filter');
