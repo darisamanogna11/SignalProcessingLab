@@ -1,0 +1,10 @@
+audioFileName = '1.wav';
+[y, fs] = audioread(audioFileName);
+L = length(y); 
+N = 8 * L;    
+Y = fft(y, N);
+f = (0:N-1) * fs / N;
+[sortedValues, sortedIndices] = sort(abs(Y), 'descend');
+strongestFrequencies = f(sortedIndices(1:3));
+disp('Three Strongest Frequencies (in Hz):');
+disp(strongestFrequencies);
